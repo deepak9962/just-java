@@ -14,6 +14,8 @@ This app display an order form of order coffee
 
 public class MainActivity extends AppCompatActivity {
 
+    int numberOfCoffees = 1;    //Global Variable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,39 +23,55 @@ public class MainActivity extends AppCompatActivity {
     }
 
 /*
-This function will be called when the order button clicked.
+This method will call when oder button clicked
 */
     public void submitOrder(View view) {
-        int numberOfCoffees;
-        numberOfCoffees = 3;
         display(numberOfCoffees);
         displayorderSubmit();
         displayPrice(numberOfCoffees * 5);
     }
 
 /*
-This function will be called for which xml id will be change.
+This method will call when the increment button clicked
 */
+    public void incrementValue(View view) {
+        numberOfCoffees = numberOfCoffees + 1;
+        display(numberOfCoffees);
+        displayPrice(numberOfCoffees * 5);
+    }
+
+/*
+This method call when the decement button clicked
+ */
+    public void decrementValue(View view) {
+        numberOfCoffees = numberOfCoffees - 1;
+        display(numberOfCoffees);
+        displayPrice(numberOfCoffees * 5);
+    }
+
+/*
+This function changes the value of quantity when clicked on order button
+ */
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_number);
         quantityTextView.setText("" + number);
     }
 
 /*
-This function will show the text "Order Submitted" in the bottom of screen
-*/
+This function shows "Order Submitted" at the bottom of the screen when clicked on order button
+ */
     private void displayorderSubmit(){
         TextView orderSubmittedTextView = (TextView) findViewById(R.id.order_submitted);
         orderSubmittedTextView.setText("Order Submitted");
     }
 
 /*
-This function will show the price with the local currency format
-For Example: For India it will be rupee symbol, like that for usa it will be dollar symbol.
-*/
+This function changes the value of Price when clicked on order button with the local currency format
+ */
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_number);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+
 }
 
