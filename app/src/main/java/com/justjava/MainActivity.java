@@ -23,15 +23,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 /*
-This method will call when oder button clicked
-*/
-    public void submitOrder(View view) {
-        display(numberOfCoffees);
-        displayorderSubmit();
-        displayPrice(numberOfCoffees * 5);
-    }
-
-/*
 This method will call when the increment button clicked
 */
     public void incrementValue(View view) {
@@ -46,6 +37,15 @@ This method call when the decement button clicked
     public void decrementValue(View view) {
         numberOfCoffees = numberOfCoffees - 1;
         display(numberOfCoffees);
+        displayPrice(numberOfCoffees * 5);
+    }
+
+/*
+This method will call when oder button clicked
+*/
+    public void submitOrder(View view) {
+        display(numberOfCoffees);
+        displayorderSubmit();
         displayPrice(numberOfCoffees * 5);
     }
 
