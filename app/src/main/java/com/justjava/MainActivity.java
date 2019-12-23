@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 /*
 This app display an order form of order coffee
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_number);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        priceTextView.setText(NumberFormat.getCurrencyInstance(Locale.US).format(number));
     }
 
     /*
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displaytotalPriceValue(int number) {
         TextView totalPriceValueView = (TextView) findViewById(R.id.total_price_value);
-        totalPriceValueView.setText(NumberFormat.getCurrencyInstance().format(number));
+        totalPriceValueView.setText(NumberFormat.getCurrencyInstance(Locale.US).format(number));
     }
 
     private void displaytotalPriceValue() {
