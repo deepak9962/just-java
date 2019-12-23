@@ -15,6 +15,9 @@ This app display an order form of order coffee
 public class MainActivity extends AppCompatActivity {
 
     int numberOfCoffees = 0;    //Global Variable;
+    String orderSubmitView;     //Global Variable;
+    String totalPriceView;      //Global Variable;
+    String thankYouView;        //Global Variable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,14 @@ public class MainActivity extends AppCompatActivity {
     This method will call when oder button clicked
     */
     public void submitOrder(View view) {
+        orderSubmitView = "Order Submitted";
+        totalPriceView = "Total Price : ";
+        thankYouView = "Thank You!";
         display(numberOfCoffees);
-        displayorderSubmit();
+        displaytotalPrice(totalPriceView);
+        displaytotalPriceValue(numberOfCoffees * 5);
+        displaythankYou(thankYouView);
+        displayorderSubmit(orderSubmitView);
         displayPrice(numberOfCoffees * 5);
     }
 
@@ -54,9 +63,15 @@ public class MainActivity extends AppCompatActivity {
     */
     public void resetButton(View view) {
         numberOfCoffees = numberOfCoffees * 0;
+        totalPriceView = "";
+        thankYouView = "";
+        orderSubmitView = "";
         display(numberOfCoffees);
         displayPrice(numberOfCoffees);
-        displayclearOrderSubmittedView();
+        displaytotalPrice(totalPriceView);
+        displaytotalPriceValue();
+        displaythankYou(thankYouView);
+        displayorderSubmit(orderSubmitView);
     }
 
     /*
@@ -68,14 +83,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    This function shows "Order Submitted" at the bottom of the screen when clicked on order button
-     */
-    private void displayorderSubmit() {
-        TextView orderSubmittedTextView = (TextView) findViewById(R.id.order_submitted);
-        orderSubmittedTextView.setText("Order Submitted");
-    }
-
-    /*
     This function changes the value of Price when clicked on order button with the local currency format
      */
     private void displayPrice(int number) {
@@ -84,11 +91,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    This function changes the value to reset
+    This function shows Text "Total Price"
      */
-    private void displayclearOrderSubmittedView() {
-        TextView clearOrderSubmittedView = (TextView) findViewById(R.id.order_submitted);
-        clearOrderSubmittedView.setText("");
+    private void displaytotalPrice(String message) {
+        TextView totalPriceView = (TextView) findViewById(R.id.total_price);
+        totalPriceView.setText(message);
+    }
+
+    /*
+    This function shows Total Price "Value"
+     */
+    private void displaytotalPriceValue(int number) {
+        TextView totalPriceValueView = (TextView) findViewById(R.id.total_price_value);
+        totalPriceValueView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    private void displaytotalPriceValue() {
+        TextView clearTotalPriceValue = (TextView) findViewById(R.id.total_price_value);
+        clearTotalPriceValue.setText("");
+    }
+
+    /*
+    This function shows Text "Thank You"
+     */
+    private void displaythankYou(String message) {
+        TextView thankYouView = (TextView) findViewById(R.id.thank_you);
+        thankYouView.setText(message);
+    }
+
+    /*
+    This function shows "Order Submitted" at the bottom of the screen when clicked on order button
+     */
+    private void displayorderSubmit(String message) {
+        TextView orderSubmittedTextView = (TextView) findViewById(R.id.order_submitted);
+        orderSubmittedTextView.setText(message);
     }
 
 }
