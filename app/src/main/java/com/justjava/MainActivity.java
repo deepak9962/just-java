@@ -41,11 +41,25 @@ public class MainActivity extends AppCompatActivity {
         CheckBox checkWhippedCream = (CheckBox) findViewById(R.id.whipped_cream);
         //If the CheckBox checked sets true, else false
         boolean hasWhippedCream = checkWhippedCream.isChecked();
+        // If checked Whipped Topping price will be added to the Price.
+        if (hasWhippedCream) {
+            int whippedCream = numberOfCoffee;
+            int whippedCreamPrice = 1;
+            whippedCreamPrice = whippedCream * whippedCreamPrice;
+            price = price + whippedCreamPrice;
+        }
 
         //Check weather the User checked the chocolate cream checkbox.
         CheckBox checkChocolateCream = (CheckBox) findViewById(R.id.chocolate_cream);
         //If the CheckBox checked sets true, else false
         boolean hasChocolateCream = checkChocolateCream.isChecked();
+        // If checked Chocolate Topping price will be added to the Price.
+        if (hasChocolateCream) {
+            int chocolateCream = numberOfCoffee;
+            int chocolateCreamPrice = 2;
+            chocolateCreamPrice = chocolateCream * chocolateCreamPrice;
+            price = price + chocolateCreamPrice;
+        }
 
         totalQuantity = "Total Quantity : " + numberOfCoffee;
         totalPriceText = "Total Price ";
