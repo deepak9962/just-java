@@ -3,6 +3,7 @@ package com.example.justjava;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -30,36 +31,22 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void submitOrder(View view) {
-        int price = calculatePrice(numberOfCoffee, 5);
 
         // Find the EditText name view.
         EditText userName = (EditText) findViewById(R.id.enter_user_name);
         // Set the Value after getting from the user to String assigned in getUserName.
         String getUserName = userName.getText().toString();
 
-        //Check weather the User checked the whipped cream checkBox.
+        // Check weather the User checked the whipped cream checkBox.
         CheckBox checkWhippedCream = (CheckBox) findViewById(R.id.whipped_cream);
-        //If the CheckBox checked sets true, else false
         boolean hasWhippedCream = checkWhippedCream.isChecked();
-        // If checked Whipped Topping price will be added to the Price.
-        if (hasWhippedCream) {
-            int whippedCream = numberOfCoffee;
-            int whippedCreamPrice = 1;
-            whippedCreamPrice = whippedCream * whippedCreamPrice;
-            price = price + whippedCreamPrice;
-        }
 
-        //Check weather the User checked the chocolate cream checkbox.
+        // Check weather the User checked the chocolate cream checkbox.
         CheckBox checkChocolateCream = (CheckBox) findViewById(R.id.chocolate_cream);
-        //If the CheckBox checked sets true, else false
         boolean hasChocolateCream = checkChocolateCream.isChecked();
-        // If checked Chocolate Topping price will be added to the Price.
-        if (hasChocolateCream) {
-            int chocolateCream = numberOfCoffee;
-            int chocolateCreamPrice = 2;
-            chocolateCreamPrice = chocolateCream * chocolateCreamPrice;
-            price = price + chocolateCreamPrice;
-        }
+
+        // It calculate the total price in its assigned class calculatePrice.
+        int price = calculatePrice(numberOfCoffee, 5, hasWhippedCream, hasChocolateCream);
 
         totalQuantity = "Total Quantity : " + numberOfCoffee;
         totalPriceText = "Total Price ";
@@ -188,8 +175,29 @@ public class MainActivity extends AppCompatActivity {
      * @param pricePerCup       is the price of per cup of coffee.
      * @return price            It returns the total price value as calculatePrice.
      */
-    private int calculatePrice(int calculateThePrice, int pricePerCup) {
+    private int calculatePrice(int calculateThePrice,
+                               int pricePerCup,
+                               boolean addWhippedCream,
+                               boolean addChocolateCream) {
+
         int price = calculateThePrice * pricePerCup;
+
+        // If checked Whipped Topping price will be added to the Price.
+        if (addWhippedCream) {
+            int whippedCream = numberOfCoffee;
+            int whippedCreamPrice = 1;
+            whippedCreamPrice = whippedCream * whippedCreamPrice;
+            price = price + whippedCreamPrice;
+        }
+
+        // If checked Chocolate Topping price will be added to the Price.
+        if (addChocolateCream) {
+            int chocolateCream = numberOfCoffee;
+            int chocolateCreamPrice = 2;
+            chocolateCreamPrice = chocolateCream * chocolateCreamPrice;
+            price = price + chocolateCreamPrice;
+        }
+
         return price;
     }
 
