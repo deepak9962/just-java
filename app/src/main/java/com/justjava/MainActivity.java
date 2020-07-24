@@ -171,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
      * <p>
      * This method calculates the total price.
      *
+     * @param addWhippedCream is whether the user wants the whipped cream topping.
+     * @param addChocolateCream is whether the user wants the chocolate topping.
      * @param calculateThePrice is the quantity.
      * @param pricePerCup       is the price of per cup of coffee.
      * @return price            It returns the total price value as calculatePrice.
@@ -180,25 +182,20 @@ public class MainActivity extends AppCompatActivity {
                                boolean addWhippedCream,
                                boolean addChocolateCream) {
 
-        int price = calculateThePrice * pricePerCup;
 
         // If checked Whipped Topping price will be added to the Price.
         if (addWhippedCream) {
-            int whippedCream = numberOfCoffee;
             int whippedCreamPrice = 1;
-            whippedCreamPrice = whippedCream * whippedCreamPrice;
-            price = price + whippedCreamPrice;
+            pricePerCup = pricePerCup + whippedCreamPrice;
         }
 
         // If checked Chocolate Topping price will be added to the Price.
         if (addChocolateCream) {
-            int chocolateCream = numberOfCoffee;
             int chocolateCreamPrice = 2;
-            chocolateCreamPrice = chocolateCream * chocolateCreamPrice;
-            price = price + chocolateCreamPrice;
+            pricePerCup = pricePerCup + chocolateCreamPrice;
         }
 
-        return price;
+        return calculateThePrice * pricePerCup;
     }
 
     /**
