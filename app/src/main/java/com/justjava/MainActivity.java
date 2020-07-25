@@ -2,12 +2,14 @@ package com.example.justjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -109,7 +111,18 @@ public class MainActivity extends AppCompatActivity {
 
         numberOfCoffee = numberOfCoffee + 1;
 
-        displayIncrementDecrement(numberOfCoffee);
+        /*
+        This prevents the quantity to increase more then 30 cups.
+         */
+        if (numberOfCoffee > 30) {
+            numberOfCoffee = 30;
+            Toast toast = Toast.makeText(this,
+                    "You cannot have more then 30 Coffee :)",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        display(numberOfCoffee);
         displayPriceLiveCount(numberOfCoffee * 5);
     }
 
@@ -121,10 +134,20 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void decreaseQuantity(View view) {
-
         numberOfCoffee = numberOfCoffee - 1;
 
-        displayIncrementDecrement(numberOfCoffee);
+        /*
+        This prevents the quantity to decrease more then 0.
+         */
+        if (numberOfCoffee < 1) {
+            numberOfCoffee = 1;
+            Toast toast = Toast.makeText(this,
+                    "You cannot have less then 1 Coffee :(",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        display(numberOfCoffee);
         displayPriceLiveCount(numberOfCoffee * 5);
     }
 
@@ -171,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
      * <p>
      * This method calculates the total price.
      *
-     * @param addWhippedCream is whether the user wants the whipped cream topping.
+     * @param addWhippedCream   is whether the user wants the whipped cream topping.
      * @param addChocolateCream is whether the user wants the chocolate topping.
      * @param calculateThePrice is the quantity.
      * @param pricePerCup       is the price of per cup of coffee.
@@ -262,10 +285,12 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param incrementDecrement increases/decreases the quantity value.
      */
+    /*
     private void displayIncrementDecrement(int incrementDecrement) {
         TextView quantityIncrement = (TextView) findViewById(R.id.quantity_number);
         quantityIncrement.setText("" + incrementDecrement);
     }
+     */
 
     /**
      * This function called by increaseQuantity(), decreaseQuantity() and resetOrder() method.
