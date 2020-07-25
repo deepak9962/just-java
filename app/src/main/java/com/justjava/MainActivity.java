@@ -109,18 +109,18 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increaseQuantity(View view) {
 
-        numberOfCoffee = numberOfCoffee + 1;
-
         /*
         This prevents the quantity to increase more then 30 cups.
          */
-        if (numberOfCoffee > 30) {
-            numberOfCoffee = 30;
-            Toast toast = Toast.makeText(this,
+        if (numberOfCoffee == 30) {
+            Toast.makeText(this,
                     "You cannot have more then 30 Coffee :)",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+                    Toast.LENGTH_SHORT).show();
+
+            return;
         }
+
+        numberOfCoffee = numberOfCoffee + 1;
 
         display(numberOfCoffee);
         displayPriceLiveCount(numberOfCoffee * 5);
@@ -141,11 +141,11 @@ public class MainActivity extends AppCompatActivity {
          */
         if (numberOfCoffee < 1) {
             numberOfCoffee = 1;
-            Toast toast = Toast.makeText(this,
+            Toast.makeText(this,
                     "You cannot have less then 1 Coffee :(",
-                    Toast.LENGTH_SHORT);
-            toast.show();
+                    Toast.LENGTH_SHORT).show();
         }
+
 
         display(numberOfCoffee);
         displayPriceLiveCount(numberOfCoffee * 5);
